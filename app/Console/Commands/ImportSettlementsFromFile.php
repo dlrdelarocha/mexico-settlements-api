@@ -43,7 +43,7 @@ class ImportSettlementsFromFile extends Command
         $fp = fopen(storage_path('settlements/CPdescarga.txt'), 'r') or die('Cannot open');
 
         $result = array();
-        while ($row = utf8_encode(fgets($fp))) {
+        while ($row = $this->setFormat(fgets($fp))) {
             if (!Str::contains($row, '|') || Str::contains($row, 'd_codigo')) {
                 continue;
             }
@@ -90,5 +90,10 @@ class ImportSettlementsFromFile extends Command
             'municipality_key' => (int)$localityKey,
             'municipality_name' => Str::upper($locality),
         ];
+    }
+
+    private function setFormat(string $value)
+    {
+        return iconv('UTF-8', 'ASCII//TRANSLIT', utf8_encode($value));
     }
 }

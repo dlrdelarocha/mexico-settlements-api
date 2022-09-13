@@ -17,7 +17,7 @@ class SettlementController extends Controller
             ->get();
 
         if ($settlements->isEmpty()) {
-            return response()->json('Not data yet!');
+            return response()->json(['zip_code' => 'Does not exists!']);
         }
 
         return $this->buildResponse($settlements);
