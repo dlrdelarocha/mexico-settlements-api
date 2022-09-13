@@ -16,6 +16,10 @@ class SettlementController extends Controller
             ->where('zip_code', $zipcode)
             ->get();
 
+        if ($settlements->isEmpty()) {
+            return response()->json('Not data yet!');
+        }
+
         return $this->buildResponse($settlements);
     }
 
