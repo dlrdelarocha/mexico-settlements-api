@@ -7,6 +7,14 @@ This microservice allows search for le settlements in Mexico using the postal co
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
+
+
+Copy the file .env.example and renamed it to .env
+
+```bash
+  cp  .env.example .env 
+```
+
 ```bash
 `DB_CONNECTION=mongodb`  
 `DB_HOST=mongo`
@@ -29,16 +37,14 @@ Go to the project directory
   cd mexico-settlements-api
 ```
 
-Copy the file .env.example and renamed it to .env
-
-```bash
-  touch .env
-```
-
 Install dependencies
 
-NOTE: This project implements [Laravel Sail](https://laravel.com/docs/9.x/sail) to run Locally
+NOTE: This project implements [Laravel Sail](https://laravel.com/docs/9.x/sail) to run Locally.
+Project requires composer to be installed
 
+```bash
+ composer install
+```
 
 ```bash
   run ./vendor/bin/sail builder --no-cache
@@ -58,6 +64,7 @@ Finally, Run the following command to import the data to MongoDB
 
 ```bash
   ./vendor/bin/sail php artisan settlements:migrate 
+  ./vendor/bin/sail php artisan migrate --path=/database/migrations/2022_09_13_161019_create_settlements_zipcode_index.php
 ```
 
 ## API Reference
