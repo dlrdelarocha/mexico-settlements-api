@@ -23,7 +23,7 @@ class SettlementController extends Controller
         return $this->buildResponse($settlements);
     }
 
-    private function buildResponse(Collection $settlements)
+    private function buildResponse(Collection $settlements): array
     {
         $settlement = $settlements->first();
         $response =  [
