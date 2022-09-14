@@ -41,17 +41,14 @@ class SettlementController extends Controller
             ]
         ];
 
-        $result = array();
-        $settlements->each(function ($settlement) use (&$result) {
-            $result[] = [
+        $settlements->each(function ($settlement) use (&$response) {
+            $response['settlements'][] = [
                 'key' => $settlement->settlement_key,
                 'name' => $settlement->settlement_name,
                 'zone_type' => $settlement->settlement_zone_type,
                 'settlement_type' => $settlement->settlement_type
             ];
         });
-
-       $response['settlements'] = $result;
 
        return $response;
     }
